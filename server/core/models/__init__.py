@@ -4,6 +4,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
 
+import redis
+
 @contextmanager
 def session_scope():
     engine = create_engine(
@@ -26,3 +28,5 @@ def session_scope():
         session.close()
 
 Base = declarative_base()
+
+Redis = redis.StrictRedis(host='localhost', port=6379, db=0)
